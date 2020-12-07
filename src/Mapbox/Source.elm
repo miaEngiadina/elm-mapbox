@@ -278,7 +278,13 @@ The first argument is the layers id, the second is a url to a [TileJSON specific
 -}
 vectorFromUrl : Id -> Url -> Source
 vectorFromUrl id url =
-    Source id (Json.Encode.object [ ( "type", Json.Encode.string "vector" ), ( "url", Json.Encode.string url ) ])
+    Source id
+        (Json.Encode.object
+            [ ( "type", Json.Encode.string "vector" )
+            , ( "url", Json.Encode.string url )
+            , ( "id", Json.Encode.string id )
+            ]
+        )
 
 
 {-| A vector tile source. Tiles must be in [Mapbox Vector Tile format](https://www.mapbox.com/developers/vector-tiles/). All geometric coordinates in vector tiles must be between `-1 * extent` and `(extent * 2) - 1` inclusive. All layers that use a vector source must specify a `sourceLayer` value.
@@ -290,6 +296,7 @@ vector : Id -> List Url -> List (SourceOption VectorSource) -> Source
 vector id urls options =
     ( "tiles", Json.Encode.list Json.Encode.string urls )
         :: ( "type", Json.Encode.string "vector" )
+        :: ( "id", Json.Encode.string id )
         :: List.map (\(SourceOption k v) -> ( k, v )) options
         |> Json.Encode.object
         |> Source id
@@ -299,7 +306,13 @@ vector id urls options =
 -}
 rasterFromUrl : Id -> Url -> Source
 rasterFromUrl id url =
-    Source id (Json.Encode.object [ ( "type", Json.Encode.string "raster" ), ( "url", Json.Encode.string url ) ])
+    Source id
+        (Json.Encode.object
+            [ ( "type", Json.Encode.string "raster" )
+            , ( "url", Json.Encode.string url )
+            , ( "id", Json.Encode.string id )
+            ]
+        )
 
 
 {-| A raster tile source. Takes a list of one or more tile source URLs, as in the TileJSON spec.
@@ -308,6 +321,7 @@ raster : Id -> List Url -> List (SourceOption RasterSource) -> Source
 raster id urls options =
     ( "tiles", Json.Encode.list Json.Encode.string urls )
         :: ( "type", Json.Encode.string "raster" )
+        :: ( "id", Json.Encode.string id )
         :: List.map (\(SourceOption k v) -> ( k, v )) options
         |> Json.Encode.object
         |> Source id
@@ -322,6 +336,7 @@ rasterDEMMapbox id =
             [ ( "type", Json.Encode.string "raster-dem" )
             , ( "url", Json.Encode.string "mapbox://mapbox.terrain-rgb" )
             , ( "encoding", Json.Encode.string "mapbox" )
+            , ( "id", Json.Encode.string id )
             ]
         )
 
@@ -333,6 +348,7 @@ rasterDEMTerrarium id url options =
     ( "type", Json.Encode.string "raster-dem" )
         :: ( "url", Json.Encode.string url )
         :: ( "encoding", Json.Encode.string "terrarium" )
+        :: ( "id", Json.Encode.string id )
         :: List.map (\(SourceOption k v) -> ( k, v )) options
         |> Json.Encode.object
         |> Source id
@@ -344,6 +360,7 @@ geoJSONFromUrl : Id -> Url -> List (SourceOption GeoJSONSource) -> Source
 geoJSONFromUrl id url options =
     ( "data", Json.Encode.string url )
         :: ( "type", Json.Encode.string "geojson" )
+        :: ( "id", Json.Encode.string id )
         :: List.map (\(SourceOption k v) -> ( k, v )) options
         |> Json.Encode.object
         |> Source id
@@ -355,6 +372,7 @@ geoJSONFromValue : Id -> List (SourceOption GeoJSONSource) -> Value -> Source
 geoJSONFromValue id options data =
     ( "data", data )
         :: ( "type", Json.Encode.string "geojson" )
+        :: ( "id", Json.Encode.string id )
         :: List.map (\(SourceOption k v) -> ( k, v )) options
         |> Json.Encode.object
         |> Source id
