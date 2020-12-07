@@ -1,7 +1,7 @@
 {
     "type": "package",
-    "name": "andre-dietrich/elm-mapbox",
-    "summary": "Fork form gampleman/elm-mapbox (4.1.0) ... An advanced mapping library",
+    "name": "miaEngiadina/elm-mapbox",
+    "summary": "An advanced mapping library",
     "license": "MIT",
     "version": "2.0.0",
     "exposed-modules": [
