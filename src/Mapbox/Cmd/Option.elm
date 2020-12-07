@@ -1,4 +1,4 @@
-module Mapbox.Cmd.Option exposing (Padding, animate, around, bearing, center, curve, duration, easing, linear, maxDuration, maxZoom, minZoom, offset, padding, pitch, screenSpeed, speed, zoom)
+module Mapbox.Cmd.Option exposing (Padding, animate, around, bearing, center, curve, duration, easing, encode, linear, maxDuration, maxZoom, minZoom, offset, padding, pitch, screenSpeed, speed, zoom)
 
 {-|
 
@@ -30,6 +30,12 @@ import LngLat exposing (LngLat)
 import Mapbox.Cmd.Internal as Internal exposing (Option(..), Supported)
 import Mapbox.Expression exposing (DataExpression, Expression)
 import Mapbox.Helpers exposing (encodePair)
+
+
+encode : List (Option supported) -> Value
+encode =
+    List.map (\(Option key val) -> ( key, val ))
+        >> Encode.object
 
 
 {-| The animation's duration, measured in milliseconds.
