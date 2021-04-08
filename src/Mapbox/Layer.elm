@@ -1245,9 +1245,10 @@ textTransform =
   - `left`: The text is aligned to the left.
   - `center`: The text is centered.
   - `right`: The text is aligned to the right.
+  -  auto : The text is aligned according to text-variable-anchor
 
 -}
-textJustify : Expression any { left : Supported, center : Supported, right : Supported } -> LayerAttr Symbol
+textJustify : Expression any { auto: Supported, left : Supported, center : Supported, right : Supported } -> LayerAttr Symbol
 textJustify =
     Expression.encode >> Layout "text-justify"
 
