@@ -2,7 +2,7 @@ module Mapbox.Expression exposing
     ( Expression, DataExpression, CameraExpression
     , encode
     , Color, Object, Collator, FormattedText
-    , true, false, bool, int, float, str, rgba, floats, strings, object, collator, defaultCollator
+    , true, false, bool, int, float, str, rgba, list, floats, strings, object, collator, defaultCollator
     , assertArray, assertArrayOfStrings, assertArrayOfFloats, assertArrayOfBools, assertBool, assertFloat, assertObject, assertString
     , toBool, toColor, toFloat, toString, toFormattedText
     , formatNumber, NumberFormatOption, locale, currency, minFractionDigits, maxFractionDigits
