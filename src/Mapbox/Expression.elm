@@ -3,7 +3,7 @@ module Mapbox.Expression exposing
     , encode
     , Color, Object, Collator, FormattedText
     , true, false, bool, int, float, str, rgba, list, floats, strings, object, collator, defaultCollator
-    , assertArray, assertArrayOfStrings, assertArrayOfFloats, assertArrayOfBools, assertBool, assertFloat, assertObject, assertString
+    , assertArray, assertArrayOfStrings, assertArrayOfFloats, assertArrayOfBools, assertBool, assertBoolWithFallback, assertFloat, assertObject, assertString
     , toBool, toColor, toFloat, toString, toFormattedText
     , formatNumber, NumberFormatOption, locale, currency, minFractionDigits, maxFractionDigits
     , typeof
@@ -700,8 +700,8 @@ assertBool =
 
 
 {-| -}
-assertBoolWithFalback : Bool -> Expression exprType any -> Expression exprType Bool
-assertBoolWithFalback fallback value =
+assertBoolWithFallback : Bool -> Expression exprType any -> Expression exprType Bool
+assertBoolWithFallback fallback value =
     call2 "boolean" value (bool fallback)
 
 

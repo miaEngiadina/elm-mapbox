@@ -3,7 +3,7 @@
     "name": "miaEngiadina/elm-mapbox",
     "summary": "An advanced mapping library",
     "license": "MIT",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "exposed-modules": [
         "Mapbox.Element",
         "Mapbox.Cmd.Internal",
