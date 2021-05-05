@@ -4,7 +4,7 @@ module Mapbox.Source exposing
     , vector, vectorFromUrl, VectorSource
     , raster, tileSize, rasterFromUrl, RasterSource
     , rasterDEMMapbox, rasterDEMTerrarium
-    , geoJSONFromUrl, geoJSONFromValue, GeoJSONSource, buffer, tolerance, cluster, clusterRadius, clusterProperties, lineMetrics, generateIds
+    , geoJSONFromUrl, geoJSONFromValue, GeoJSONSource, buffer, tolerance, cluster, clusterRadius, clusterProperties, lineMetrics, generateIds, filter
     , Coords, image, video, staticCanvas, animatedCanvas
     , bounds, minzoom, maxzoom, attribution, scheme, Scheme(..)
     , encode, getId
@@ -182,6 +182,13 @@ tileSize ts =
 buffer : Int -> SourceOption GeoJSONSource
 buffer int =
     SourceOption "buffer" (Json.Encode.int int)
+
+
+{-| A expression specifying conditions on source features. Only features that match the filter are displayed.
+-}
+filter : Expression any Bool -> SourceOption GeoJSONSource
+filter =
+    SourceOption "filter" << Expression.encode
 
 
 {-| Douglas-Peucker simplification tolerance (higher means simpler geometries and faster performance). Defaults to 0.375.
